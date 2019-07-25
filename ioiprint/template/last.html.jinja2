@@ -10,17 +10,15 @@
     <div class="sep"></div>
 
     <div class="text">
+        <h3>User: {{ contestant_id }}</h3>
+        <h3>Desk: {{ zone }} {{ desk_id }}</h3>
+        <p>Name: {{ contestant_name }}</p>
+
         <p>Print ID: {{ print_id }}</p>
         <p>Pages: {{ num_pages }}{% if original_num_pages %} (was {{ original_num_pages }}){% endif %}</p>
         <p>Time: {{ time }}</p>
-        <p>User: {{ contestant_id }}</p>
-        <p>Name: {{ contestant_name }}</p>
-        <p>Desk: {{ zone }} {{ desk_id }}</p>
-        <p>Country: {{ country_name }}</p>
-    </div>
+  </div>
 </div>
-<!--div id="sidebar">
-    <img id="side_image" src="{{ static_path }}/side.png">
-</div-->
+
 </body>
 </html>
