@@ -6,16 +6,16 @@
 </head>
 <body>
 <div class="first">
-    <h1>{{ contestant_id }}</h1>
     <h2>Desk: {{zone}} {{ desk_id }}</h2>
+    <h1>{{ contestant_id }}</h1>
     <p>{{ contestant_name }}</p>
 
     <div class="sep"></div>
 
-    <p>Pages: {{ num_pages }}{% if original_num_pages %} (was {{ original_num_pages }}){% endif %}</p>
-    <p>Time: {{ time }}</p>
     <p>Print ID: {{ print_id }}</p>
 
+    <p>Pages: {{ num_pages }}{% if original_num_pages %} (was {{ original_num_pages }}){% endif %}</p>
+    <p>Time: {{ time }}</p>
     <div class="location">
         <img class="map" src="{{ desk_map_img }}">
     </div>

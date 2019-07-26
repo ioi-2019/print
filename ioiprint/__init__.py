@@ -12,9 +12,9 @@ PRINTER_FOR_ZONE = json.loads(os.getenv('PRINTERS_FOR_ZONES'))
 
 DEFAULT_PRINTER = os.getenv('DEFAULT_PRINTER')
 
-NET_ADMIN_URL = os.getenv('NETADMIN_URL')
-CONTESTANT_DATA_ADDRESS_URL = 'http://{url}/api/nodes/ip/{{ip}}/'.format(
-    url=NET_ADMIN_URL)
+WEBSERVICE_URL = os.getenv('WEBSERVICE_URL')
+CONTESTANT_DATA_ADDRESS_URL = 'http://{url}/contestant/{{ip}}/'.format(
+    url=WEBSERVICE_URL)
 
 PDF_UPLOAD_PATH = os.getenv('UPLOADS_DIRECTORY')
 

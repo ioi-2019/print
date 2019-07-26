@@ -92,7 +92,6 @@ def contestant():
         os.path.join(PDF_UPLOAD_PATH, filename),
         contestant_data['contestant_id'],
         contestant_data['contestant_name'],
-        contestant_data['contestant_country'],
         contestant_data['zone'],
         contestant_data['desk_id'],
         desk_map_img,

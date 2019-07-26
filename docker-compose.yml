@@ -11,7 +11,7 @@ services:
     volumes:
     - ./uploads/:/usr/src/ioiprint/uploads/  # the directory before ":" is the uploads directory on the host machine
     environment:
-      WEBSERVICE_URL:   # the address of the Web Service that provies the contestant information
+      WEBSERVICE_URL: 172.30.20.100:8080  # the address of the Web Service that provies the contestant information
       UPLOADS_DIRECTORY: /usr/src/ioiprint/uploads/
       CUPS_ADDRESS: cups-back:631
       # The printer or class names used for contest zones in json format (They should exist in cups-back server)

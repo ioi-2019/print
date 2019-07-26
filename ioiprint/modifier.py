@@ -50,7 +50,7 @@ def make_translation_pdf(pdf_file_path, country_code, country_name,
 
 
 def make_contestant_pdf(pdf_file_path, contestant_id, contestant_name,
-                        contestant_country, zone, desk_id, desk_map_img, print_id,
+                        zone, desk_id, desk_map_img, print_id,
                         temp_directory):
     formatted_time = datetime.now().strftime('%a, %H:%M:%S')
     num_pages = _get_num_of_pages(pdf_file_path)
@@ -85,7 +85,6 @@ def make_contestant_pdf(pdf_file_path, contestant_id, contestant_name,
         contestant_id=contestant_id,
         zone=zone,
         desk_id=desk_id,
-        country_name=contestant_country,
         contestant_name=contestant_name
     )
     last_page_pdf = html_to_pdf(last_page_html, 'last', temp_directory)
