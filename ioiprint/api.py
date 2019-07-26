@@ -59,9 +59,10 @@ def cms_request():
     ip = request.form['ip']
     contestant_data = get_contestant_data(ip)
     temp_directory = create_temp_directory()
+    print(contestant_data['desk_image_url'])
     if 'desk_image_url' in contestant_data:
         desk_map_img = download(contestant_data['desk_image_url'],
-                                'desk_map.svg', temp_directory)
+                                'desk_map.png', temp_directory)
     else:
         desk_map_img = contestant_data['desk_image_path']
     request_pdf_path = make_cms_request_pdf(
@@ -85,7 +86,7 @@ def contestant():
     temp_directory = create_temp_directory()
     if 'desk_image_url' in contestant_data:
         desk_map_img = download(contestant_data['desk_image_url'],
-                                'desk_map.svg', temp_directory)
+                                'desk_map.png', temp_directory)
     else:
         desk_map_img = contestant_data['desk_image_path']
     final_pdf_path = make_contestant_pdf(
