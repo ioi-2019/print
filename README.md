@@ -6,10 +6,11 @@ Olympiad in Informatics, during the contests and the translation meetings.
 The system has been developed for and was first used in the
 [IOI 2017](http://ioi2017.org/) in Tehran, Iran.
 
+_This repository stores the adapted version of the original printing system. Alongside with some small adaptations, 'Call staf request' functionality was removed from the system._ 
+
 The system supports the following tasks and requests:
   * Print requests from contestants during the contest
     (via a custom printer installed on all contestants machines) [`contestant`]
-  * Call staff requests from the IOI Contest Management System [`cms_request`]
   * Print requests from the IOI Translation System during the translation meetings
     [`translation`]
   * Custom mass print requests [`mass`]
@@ -56,7 +57,7 @@ How to Use
 #### Configure printers
 
 Go to `http://printer_server_address:6631/`, it is cups server configuration page:
-1. Go to `Administration page`, login with predefined username `admin` and password `ioi`.
+1. Go to `Administration page`, login with predefined username `admin` and password `ioi2019`.
 2. Click on `Add Printer`, select `Internet Printing Protocol (ipp)`, click `Continue`.
 3. Write the network printer address in `Connection`, click `Continue`. (Check your printer manual to find its ipp address)
 4. Set a `Name` for your printer and make sure `Share This Printer` is selected, click `Continue`. (The `Name` you use for your printer are the ones that you use in configuring printers in `ioiprint` in `docker-compose.yml`)

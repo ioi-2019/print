@@ -53,30 +53,6 @@ def translation():
     return "OK"
 
 
-@app.route('/cms_request', methods=['POST'])
-def cms_request():
-    request_message = request.form['request_message']
-    ip = request.form['ip']
-    contestant_data = get_contestant_data(ip)
-    temp_directory = create_temp_directory()
-    print(contestant_data['desk_image_url'])
-    if 'desk_image_url' in contestant_data:
-        desk_map_img = download(contestant_data['desk_image_url'],
-                                'desk_map.png', temp_directory)
-    else:
-        desk_map_img = contestant_data['desk_image_path']
-    request_pdf_path = make_cms_request_pdf(
-        request_message,
-        contestant_data['contestant_id'],
-        contestant_data['contestant_name'],
-        contestant_data['desk_id'],
-        desk_map_img,
-        temp_directory
-    )
-    print_file(request_pdf_path, PRINTER_FOR_ZONE[contestant_data['zone']])
-    return "OK"
-
-
 @app.route('/contestant', methods=['POST'])
 def contestant():
     filename = request.form['filename']
