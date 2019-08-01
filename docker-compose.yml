@@ -23,8 +23,8 @@ services:
           "D": "printer2",
           "E": "printer3",
           "F": "printer3",
-          "G": "printer4",
-          "H": "printer4"
+          "G": "printer3",
+          "H": "printer3"
         }
       DEFAULT_PRINTER: default  # The printer or class name used for translation and mass requests
 
