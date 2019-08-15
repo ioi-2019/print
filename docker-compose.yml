@@ -1,0 +1,54 @@
+version: '3.1'
+
+services:
+  ioiprint:
+    build:
+      context: .
+      args:
+        TIMEZONE: Asia/Baku  # The timezone in which times are calculated
+    ports:
+    - 5000:5000  # The first 5000 is the port the print service will be on
+    volumes:
+    - ./uploads/:/usr/src/ioiprint/uploads/  # the directory before ":" is the uploads directory on the host machine
+    environment:
+      WEBSERVICE_URL: 172.30.20.100:8080  # the address of the Web Service that provies the contestant information
+      UPLOADS_DIRECTORY: /usr/src/ioiprint/uploads/
+      CUPS_ADDRESS: cups-back:631
+      # The printer or class names used for contest zones in json format (They should exist in cups-back server)
+      PRINTERS_FOR_ZONES: >
+        {
+          "A": "printer1",
+          "B": "printer1",
+          "C": "printer2",
+          "D": "printer2",
+          "E": "printer3",
+          "F": "printer3",
+          "G": "printer4",
+          "H": "printer4"
+        }
+      DEFAULT_PRINTER: default  # Not used
+      DRAFT_PRINTER: draft_printer  # Printer or class name used for DRAFT Translations Printing
+      FINAL_PRINTER: final_printer  # Printer or class name used for FINAL Translations Printing
+
+  
+  cups-front:  # Only for contestant printing, not needed for Translation printing:
+    build:
+      context: cups/
+      args:
+        PRINTER_NAME: ioi_printer  # The printer name to setup on contestants' computers
+    ports:
+    - 631:631
+    environment:
+      # Username and password used for cups-front server
+      CUPS_USER_ADMIN: admin
+      CUPS_USER_PASSWORD: ioibaku2019
+      PRINTER_NAME: ioi_printer  # It should be the same as PRINTER_NAME in build args
+      
+  cups-back:
+    image: aadl/cups-alpine
+    ports:
+    - 6631:631
+    environment:
+      # Username and password used for cups-back server
+      CUPS_USER_ADMIN: admin
+      CUPS_USER_PASSWORD: ioibaku2019
