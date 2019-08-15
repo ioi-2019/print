@@ -5,7 +5,12 @@ import string
 from flask import Flask, request
 
 from ioiprint import DEFAULT_PRINTER, PDF_UPLOAD_PATH, PRINTER_FOR_ZONE
+<<<<<<< HEAD
 from ioiprint.modifier import make_contestant_pdf, make_translation_pdf#, make_cms_request_pdf
+=======
+from ioiprint.modifier import make_contestant_pdf, \
+    make_translation_pdf
+>>>>>>> 0a719379925e2ad6a5af9ca8ddd390e45a78cad5
 from ioiprint.contestant_data import get_contestant_data
 from ioiprint.print import print_file
 from ioiprint.utils import create_temp_directory, download
