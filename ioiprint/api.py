@@ -5,8 +5,7 @@ import string
 from flask import Flask, request
 
 from ioiprint import DEFAULT_PRINTER, PDF_UPLOAD_PATH, PRINTER_FOR_ZONE
-from ioiprint.modifier import make_cms_request_pdf, make_contestant_pdf, \
-    make_translation_pdf
+from ioiprint.modifier import make_contestant_pdf, make_translation_pdf#, make_cms_request_pdf
 from ioiprint.contestant_data import get_contestant_data
 from ioiprint.print import print_file
 from ioiprint.utils import create_temp_directory, download
@@ -24,23 +23,24 @@ def upload():
     file.save(os.path.join(PDF_UPLOAD_PATH, random_file_name))
     return random_file_name
 
-
+# Prints without Cover Page (used for testing)
 @app.route('/mass', methods=['POST'])
 def mass():
     filename = request.form['filename']
     printer = request.form.get('printer', DEFAULT_PRINTER)
     count = int(request.form['count'])
-    for _ in range(count):
-        print_file(os.path.join(PDF_UPLOAD_PATH, filename), printer)
+#    for _ in range(count):
+    print_file(os.path.join(PDF_UPLOAD_PATH, filename), printer, count) # Changed by Emil Abbasov (IOI2019)
     return "OK"
 
-
+# Prints with Cover Page (used in IOI Baku 2019)
 @app.route('/translation', methods=['POST'])
 def translation():
     filename = request.form['filename']
     country_code = request.form['country_code']
     country_name = request.form['country_name']
     count = int(request.form['count'])
+    printer_type = request.form['printer_type']
     temp_directory = create_temp_directory()
     final_pdf_path = make_translation_pdf(
         os.path.join(PDF_UPLOAD_PATH, filename),
@@ -48,8 +48,8 @@ def translation():
         country_name,
         temp_directory
     )
-    for _ in range(count):
-        print_file(final_pdf_path, DEFAULT_PRINTER)
+
+    print_file(final_pdf_path, printer_type, count) # Changed by Emil Abbasov (IOI2019)
     return "OK"
 
 
@@ -75,5 +75,5 @@ def contestant():
         cups_job_id,
         temp_directory
     )
-    print_file(final_pdf_path, PRINTER_FOR_ZONE[contestant_data['zone']])
+    print_file(final_pdf_path, PRINTER_FOR_ZONE[contestant_data['zone']], 1)
     return "OK"

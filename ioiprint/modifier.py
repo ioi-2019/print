@@ -26,7 +26,8 @@ def _get_num_of_pages(pdf_file_path):
 
 def make_translation_pdf(pdf_file_path, country_code, country_name,
                          temp_directory):
-    formatted_time = datetime.now().strftime('%a, %H:%M:%S')
+    formatted_date = datetime.now().strftime('%a, %-d %B')
+    formatted_time = datetime.now().strftime('%H:%M:%S')
     num_pages = _get_num_of_pages(pdf_file_path)
 
     first_page_template = JINAJ_ENV.get_template('translation.html.jinja2')
@@ -35,6 +36,7 @@ def make_translation_pdf(pdf_file_path, country_code, country_name,
         country_code=country_code,
         country_name=country_name,
         num_pages=num_pages,
+		date=formatted_date,
         time=formatted_time
     )
     first_page_pdf = html_to_pdf(first_page_html, 'first', temp_directory)

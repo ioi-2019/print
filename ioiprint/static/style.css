@@ -65,8 +65,8 @@ p {
 }
 
 .ioi_logo_trans {
-    margin: 0 -50px;
-    width: 500px;
+ /*   margin: 0px 0px; */
+    width: 300px;
 }
 
 #side_image {
